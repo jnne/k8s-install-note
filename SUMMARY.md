@@ -1,0 +1,11 @@
+# 目录
+* [k8sv1.10.0安装文档](./quickstart/README.md)
+  * [k8s v.1.10.0 二进制安装](./1.k8s v.1.10.0 二进制安装.md)
+  * [calico网络设置](./2.k8s 二进制安装集群-calico网络设置.md)
+  * [kubedns配置](./3.K8S 二进制安装集群-kubedns配置.md)
+  * [kube-dashboard](./4.K8S 二进制安装集群-kube-dashboard.md)
+  * [nginx-ingress](./5.KUBERNETES V1.10.0 二进制安装 之nginx-ingress 边界路由安装配置.md)
+  * [kube-route](./6.kube-route 代替kube-proxy.md)
+  * [node部署初始化脚本](./7.node部署初始化脚本.md)
+  * [node批量部署的api账户一些自动策略设置](./8.node批量部署的api账户一些自动策略设置.md)
+  * [haproxy + keepalived 配置ingress-nginx 的前端代理](./9.haproxy + keepalived 配置ingress-nginx 的前端代理.md)
