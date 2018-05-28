@@ -9,3 +9,5 @@
   * [node部署初始化脚本](./7.node部署初始化脚本.md)
   * [node批量部署的api账户一些自动策略设置](./8.node批量部署的api账户一些自动策略设置.md)
   * [haproxy + keepalived 配置ingress-nginx 的前端代理](./9.haproxy + keepalived 配置ingress-nginx 的前端代理.md)
+* [prometheus+k8s部署](./prometheus/prometheus.md)
+  * [prometheus单实例部署](./prometheus/prometheus-sample.md)
