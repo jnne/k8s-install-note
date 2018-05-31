@@ -12,3 +12,4 @@
 * [prometheus+k8s部署](./prometheus/prometheus.md)
   * [prometheus单实例部署](./prometheus/prometheus-sample.md)
   * [prometheus部署k8s集群监控](./prometheus/prometheus-k8s.md)
+  * [kube-state-metrics](./prometheus/prometheus—kube-state-metrics.md)
