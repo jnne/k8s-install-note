@@ -61,10 +61,27 @@ metadata:
 data:
   prometheus.yml: |
     global:
-      scrape_interval:     15s
-      evaluation_interval: 15s
-    scrape_configs:
+      scrape_interval:     10s
+      evaluation_interval: 10s
+    rule_files:
+    - /etc/prometheus/rules.yml
 
+    alerting:
+      alertmanagers:
+      - kubernetes_sd_configs:
+        - role: endpoints
+        relabel_configs:
+        - action: keep
+          regex: altermanager
+          source_labels:
+          - __meta_kubernetes_service_name
+        - action: keep
+          regex: kube-system
+          source_labels:
+          - __meta_kubernetes_namespace
+        scheme: http
+
+    scrape_configs:
     - job_name: 'kubernetes-apiservers'
       kubernetes_sd_configs:
       - role: endpoints
@@ -209,6 +226,7 @@ data:
       - source_labels: [__meta_kubernetes_pod_name]
         action: replace
         target_label: kubernetes_pod_name
+
     - job_name: 'kubernetes-nodes-physical'
       kubernetes_sd_configs:
       - role: node
@@ -222,6 +240,62 @@ data:
         regex: '(.*):10250'
         replacement: '${1}:9100'
         target_label: __address__
+
+  rules.yml: |
+    groups:
+    - name: node-physical-rules
+      rules:
+      - alert: 节点内存使用率
+        expr: (node_filesystem_size{device="rootfs"} - node_filesystem_free{device="rootfs"}) / node_filesystem_size{device="rootfs"} * 100 > 80
+        for: 2m
+        labels:
+          team: node
+        annotations:
+          summary: "{{$labels.instance}}: 发现节点根文件系统使用率过高"
+          description: "{{$labels.instance}}: 根文件系统使用率超过80% (当前值是: {{ $value }})"
+
+      - alert: 节点内存使用率
+        expr: (node_memory_MemTotal - (node_memory_MemFree+node_memory_Buffers+node_memory_Cached )) / node_memory_MemTotal * 100 < 80
+        for: 2m
+        labels:
+          team: node
+        annotations:
+          summary: "{{$labels.instance}}: 节点内存使用率过高"
+          description: "{{$labels.instance}}: 内存使用率超过 80% (当前值是: {{ $value }})"
+
+      - alert: 节点cpu使用率
+        expr: node_load1 >10
+        for: 2m
+        labels:
+          team: node
+        annotations:
+          summary: "{{$labels.instance}}: 节点一分钟负载超过10%"
+          description: "{{$labels.instance}}: 节点一分钟负载超过10% (当前值是: {{ $value }})"
+
+
+---
+kind: ConfigMap
+apiVersion: v1
+metadata:
+  name: alertmanager
+  namespace: kube-system
+data:
+  config.yml: |-
+    global:
+      resolve_timeout: 5m
+    route:
+      receiver: webhook
+      group_wait: 30s
+      group_interval: 1m
+      repeat_interval: 1m
+      routes:
+      - receiver: webhook
+        group_wait: 10s
+    receivers:
+    - name: webhook
+      webhook_configs:
+      - url: 'http://10.255.72.206:80/'
+        send_resolved: true
 ```
 
 ``` bash
@@ -234,56 +308,62 @@ kubectl create -f prometheus.config.yml
 
 ``` yaml
 ---
-apiVersion: apps/v1beta2
-kind: Deployment
-metadata:
-  labels:
-    name: prometheus-deployment
-  name: prometheus
-  namespace: kube-system
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: prometheus
-  template:
-    metadata:
-      labels:
+  apiVersion: apps/v1beta2
+  kind: Deployment
+  metadata:
+    labels:
+      name: prometheus-deployment
+    name: prometheus
+    namespace: kube-system
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
         app: prometheus
-    spec:
-      containers:
-      - image: hub-dev.fengjr.com/prometheus/prometheus:latest
-        name: prometheus
-        command:
-        - "/bin/prometheus"
-        args:
-        - "--config.file=/etc/prometheus/prometheus.yml"
-        - "--storage.tsdb.path=/prometheus"
-        - "--storage.tsdb.retention=24h"
-        ports:
-        - containerPort: 9090
-          protocol: TCP
-        volumeMounts:
-        - mountPath: "/prometheus"
-          name: data
-        - mountPath: "/etc/prometheus"
-          name: config-volume
-        resources:
-          requests:
-            cpu: 100m
-            memory: 100Mi
-          limits:
-            cpu: 500m
-            memory: 2500Mi
-      serviceAccountName: prometheus
-      imagePullSecrets:
-        - name: regsecret
-      volumes:
-      - name: data
-        emptyDir: {}
-      - name: config-volume
-        configMap:
-          name: prometheus-config
+    template:
+      metadata:
+        labels:
+          app: prometheus
+      spec:
+        securityContext:
+          runAsUser: 1000
+          fsGroup: 2000
+          runAsNonRoot: true
+        serviceAccountName: prometheus
+        containers:
+        - image: hub-dev.fengjr.com/prometheus/prometheus:v2.0.0
+          name: prometheus
+          command:
+          - "/bin/prometheus"
+          args:
+          - "--config.file=/etc/prometheus/prometheus.yml"
+          - "--storage.tsdb.path=/prometheus"
+          - "--storage.tsdb.retention=24h"
+          ports:
+          - containerPort: 9090
+            protocol: TCP
+          volumeMounts:
+          - mountPath: "/prometheus"
+            name: prometheus-data
+          - mountPath: "/etc/prometheus"
+            name: config-volume
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 500m
+              memory: 2500Mi
+        imagePullSecrets:
+          - name: regsecret
+        volumes:
+        - name: prometheus-data
+          hostPath:
+            path: /prometheus-data/
+            type: DirectoryOrCreate
+        - name: config-volume
+          configMap:
+            name: prometheus-config
 ```
 
 ``` bash

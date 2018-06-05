@@ -13,3 +13,5 @@
   * [prometheus单实例部署](./prometheus/prometheus-sample.md)
   * [prometheus部署k8s集群监控](./prometheus/prometheus-k8s.md)
   * [kube-state-metrics](./prometheus/prometheus—kube-state-metrics.md)
+  * [prometheus_hostpath](./prometheus/prometheus_deploy_hostpath.md)
+  * [prometheus_dingtalk_pythonproxy](./prometheus/prometheus_dingtalk_pythonproxy.md)
