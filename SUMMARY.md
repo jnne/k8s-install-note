@@ -16,3 +16,4 @@
   * [prometheus_hostpath](./prometheus/prometheus_deploy_hostpath.md)
   * [prometheus_dingtalk_pythonproxy](./prometheus/prometheus_dingtalk_pythonproxy.md)
   * [部署钉钉消息转发服务](./prometheus/deploy_dingtalk_proxy.md)
+  * [部署helm](./helm/install_helm.md)
