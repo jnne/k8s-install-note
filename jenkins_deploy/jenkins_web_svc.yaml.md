@@ -1,3 +1,4 @@
+``` yaml
 kind: Service
 apiVersion: v1
 metadata:
@@ -10,3 +11,4 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 8080
+```

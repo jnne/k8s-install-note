@@ -1,3 +1,4 @@
+``` yaml
 apiVersion: v1
 kind: PersistentVolume
 metadata:
@@ -13,3 +14,4 @@ spec:
   nfs:
     path: /home/kubernetes_data/jenkins_data
     server: 10.255.72.206
+```

@@ -1,3 +1,4 @@
+``` yaml
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
@@ -11,3 +12,4 @@ spec:
     requests:
       storage: 50Gi
   storageClassName: slaveslow
+```

@@ -1,3 +1,4 @@
+``` yaml
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
@@ -12,3 +13,4 @@ spec:
           serviceName: jenkins-slb
           servicePort: 80
         path: /
+```

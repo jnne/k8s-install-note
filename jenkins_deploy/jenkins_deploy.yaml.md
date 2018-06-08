@@ -1,3 +1,4 @@
+``` yaml
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -32,3 +33,4 @@ spec:
             server: 10.255.72.206
             path: /home/kubernetes_data/jenkins_data
       serviceAccount: "jenkins-admin"
+```

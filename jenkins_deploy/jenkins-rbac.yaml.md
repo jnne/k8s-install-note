@@ -1,3 +1,4 @@
+``` yaml
 ---
 apiVersion: v1
 kind: ServiceAccount
@@ -41,3 +42,4 @@ rules:
     - deployments
     - services
   verbs: ["get", "list", "watch"]
+```

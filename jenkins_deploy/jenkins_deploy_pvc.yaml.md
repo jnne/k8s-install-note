@@ -1,3 +1,4 @@
+``` yaml
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -31,3 +32,4 @@ spec:
           persistentVolumeClaim:
             claimName: jenkins-data-pvc
       serviceAccount: "jenkins-admin"
+```
