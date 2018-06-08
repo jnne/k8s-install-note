@@ -17,7 +17,7 @@
   * [prometheus_dingtalk_pythonproxy](./prometheus/prometheus_dingtalk_pythonproxy.md)
   * [部署钉钉消息转发服务](./prometheus/deploy_dingtalk_proxy.md)
   * [部署helm](./helm/install_helm.md)
-  * [jenkins_deploy]()
+  * [jenkins_deploy](./jenkins_deploy/jenkins_deploy_index.md)
     * [创建jenkins命名空间](./jenkins_deploy/jenkins-namespace.yaml.md)
     * [创建jenkins调用k8s的rbac](./jenkins_deploy/jenkins-rbac.yaml.md)
     * [创建jenkins-pv](./jenkins_deploy/jenkins_pv.yaml.md)
