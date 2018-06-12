@@ -18,7 +18,7 @@
 	  * [haproxy + keepalived 配置ingress-nginx 的前端代理](./9.haproxy + keepalived 配置ingress-nginx 的前端代理.md)
 	* [prometheus+k8s部署](./prometheus/prometheus.md)
 	  * [prometheus-operator部署prometheus](./prometheus/prometheus-operator/prometheus-operator.md)
-	  * [prometheus-operator部署prometheus,自定义配置](./prometheus/prometheus-operator/prometheus-custom-configure.md)
+	  * [自定义配置部署prometheus](./prometheus/prometheus-operator/prometheus-custom-configure.md)
 	  * [prometheus单实例部署](./prometheus/prometheus-sample.md)
 	  * [prometheus部署k8s集群监控](./prometheus/prometheus-k8s.md)
 	  * [kube-state-metrics](./prometheus/prometheus—kube-state-metrics.md)
