@@ -1,4 +1,6 @@
 # 目录
+* [创建devuser的开发使用的账户](./创建开发使用的devuser账户.md)
+* [rbac的说明](./rbac/rbac简介.md)
 * [k8sv1.10.0安装文档](./quickstart/README.md)
   * [k8s v.1.10.0 二进制安装](./1.k8s v.1.10.0 二进制安装.md)
   * [calico网络设置](./2.k8s 二进制安装集群-calico网络设置.md)
