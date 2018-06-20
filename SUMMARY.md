@@ -8,7 +8,7 @@
   * [node部署初始化脚本](./7.node部署初始化脚本.md)
   * [node批量部署的api账户一些自动策略设置](./8.node批量部署的api账户一些自动策略设置.md)
   * [haproxy + keepalived 配置ingress-nginx 的前端代理](./9.haproxy + keepalived 配置ingress-nginx 的前端代理.md)
-  * [prometheus部署](./prometheus/index.md)
+  * [prometheus部署](./prometheus/prometheus-index.md)
     * [alertmanager-use-nfs](./prometheus/prometheus-operator/alertmanager-use-nfs.md)
     * [prometheus_use_nfs](./prometheus/prometheus-operator/prometheus_use_nfs.md)
     * [prometheus-custom-configure-rules](./prometheus/prometheus-operator/prometheus-custom-configure.md)
