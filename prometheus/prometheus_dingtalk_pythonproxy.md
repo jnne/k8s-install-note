@@ -26,42 +26,113 @@ data:
         send_resolved: true
 ```
 
-- dingtalk_proxy.py
-	> 这里是python2 python3的后期再补充。
+- app.py
+	> 这里是python3的脚本
 
 ``` python
-#!/usr/bin/env python
-#coding=utf-8
-import sys
-reload(sys)
-sys.setdefaultencoding('utf-8')
-from flask import Flask
+import io, sys
+
+sys.stdout = io.TextIOWrapper(sys.stdout.detach(), encoding='utf-8')
+sys.stderr = io.TextIOWrapper(sys.stderr.detach(), encoding='utf-8')
+
+from flask import Flask, Response
 from flask import request
+import requests
+import logging
 import json
+import locale
+locale.setlocale(locale.LC_ALL,"en_US.UTF-8")
+
 
 app = Flask(__name__)
 
-@app.route('/',methods=['POST'])
 
-def send():
-    if request.method == 'POST':
+console = logging.StreamHandler()
+log = logging.getLogger("flask_webhook_dingtalk")
+log.addHandler(console)
+log.setLevel(logging.DEBUG)
+
+
+@app.route('/')
+
+
+def index():
+    return 'Index Page'
+
+@app.route('/<profiledd>/send/',methods=['POST'])
+
+def hander_session(profiledd):
+
+    dingtalk_profile = dict(
+        {
+            'node' : 'https://oapi.dingtalk.com/robot/send?access_token=xxx',
+            'test' : 'https://oapi.dingtalk.com/robot/send?access_token=xxx'
+        }
+    )
+
+    if profiledd in dingtalk_profile:
+        profile_url = dingtalk_profile[profiledd]
         post_data = request.get_data()
-        post_data = json.loads(post_data)['alerts']
+        post_data = json.loads(post_data.decode("utf-8"))['alerts']
         for i in post_data:
-                messa = ''' **%s** \n > %s \n > %s \n > %s ''' %(i['labels']['alertname'],i['startsAt'],i['annotations']['summary'],i['annotations']['description'])
-                status = alert_data(messa,i['annotations']['summary'])
-                print(messa,status)
-    return status
+            try:
+                try:
+                    alert_status = i['status']
+                except:
+                    alert_status = "unkown!"
+                try:
+                    alert_name = i['labels']['alertname']
+                except:
+                    alert_name = "no alertname"
+                try:
+                    startat = i['startsAt']
+                except:
+                    startat = "no startsAt"
+                try:
+                    summary123 = i['annotations']['summary']
+                except:
+                    summary123 = i['annotations']['message']
+                try:
+                    instances123 = i['labels']['instance']
+                except:
+                    instances123 = i['annotations']['description']
+                try:
+                    describetions = i['annotations']['description']
+                except:
+                    describetions = i['labels']['instance']
+                log.info(i)
+                messa = ''' > 通知类型: **%s** \n\n 服务: %s \n\n 时间: %s \n\n 主机:%s \n\n附加信息: %s \n\n %s''' % (alert_status,alert_name,startat,instances123,describetions,summary123 )
+                status = alert_data(messa, summary123, profile_url)
+                log.info(status)
+                return status
+            except Exception as e:
+                log.error(repr(e))
 
-def alert_data(data,title):
-    from urllib2 import Request,urlopen
-    url = 'https://oapi.dingtalk.com/robot/send?access_token=xxxxxxxxxxxxxxxx'
+def alert_data(data,title,profile_url):
+    headers = {'Content-Type':'application/json'}
     send_data = '{"msgtype": "markdown","markdown": {"title": \"%s\" ,"text": \"%s\" }}' %(title,data)  # type: str
     send_data = send_data.encode('utf-8')
-    request = Request(url, send_data)
-    request.add_header('Content-Type','application/json')
-    return urlopen(request).read()
+    reps = requests.post(url=profile_url, data=send_data, headers=headers)
+    return reps.text
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port="80")
+    app.debug = True
+    app.run(host='0.0.0.0', port='8080')
+```
+
+- dockerfile
+
+``` bash
+FROM hub-dev.fengjr.com/prometheus/ubuntu:16.04 #这里就是使用的官方的ubuntu16.04的镜像
+MAINTAINER sadlar sadlar@126.com
+
+#添加python
+RUN apt-get update &&  apt-get install -y python3 python3-pip locales tzdata net-tools
+RUN pip3 install flask
+RUN pip3 install requests
+RUN locale-gen  en_US.UTF-8
+RUN echo "Asia/Shanghai" > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && echo 'LANG="en_US.UTF-8"'>/etc/default/locale && echo 'LC_ALL="en_US.UTF-8"'>/etc/default/locale && dpkg-reconfigure --frontend=noninteractive locales && update-locale LANG=en_US.UTF-8
+ADD app.py /usr/local/dingtalk_pyproxy.py
+EXPOSE 8080
+CMD ["/usr/bin/python3", "/usr/local/dingtalk_pyproxy.py"]
 ```
