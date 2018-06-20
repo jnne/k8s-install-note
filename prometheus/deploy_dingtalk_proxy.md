@@ -83,26 +83,3 @@ data:
       - url: 'http://prometheus-webhook-dingtalk/dingtalk/test/send'
         send_resolved: true
 ```
-
-**5. 增加一种动态配置webhook的方式**
-
-``` yaml
-alerting:
-  alertmanagers:
-  - path_prefix: /
-    scheme: http
-    kubernetes_sd_configs:
-    - role: endpoints
-      namespaces:
-        names:
-        - monitoring
-    relabel_configs:
-    - action: keep
-      source_labels:
-      - __meta_kubernetes_service_name
-      regex: alertmanager-main
-    - action: keep
-      source_labels:
-      - __meta_kubernetes_endpoint_port_name
-      regex: web
-```

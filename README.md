@@ -45,3 +45,5 @@
 	    * [整体架构](./ops/k8s整体架构.md)
 	    * [pod服务监控](./ops/pod服务的监控.md)
 	    * [k8sv1.10.0安装文档](./quickstart/README.md)
+	    * [prometheus使用nfs](./prometheus/prometheus-operator/prometheus_use_nfs.md)
+	    * [alertmanager使用nfs](./prometheus/prometheus-operator/alertmanager-use-nfs.md)
