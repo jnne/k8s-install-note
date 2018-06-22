@@ -22,7 +22,7 @@ spec:
         app: prometheus-webhook-dingtalk
     spec:
       containers:
-      - image: hub-dev.fengjr.com/prometheus/prometheus-webhook-dingtalk:v0.3.0
+      - image: hub-dev.example.com/prometheus/prometheus-webhook-dingtalk:v0.3.0
         name: prometheus-webhook-dingtalk
         args:
         - "--ding.profile=node=https://oapi.dingtalk.com/robot/send?access_token=xxxxx"

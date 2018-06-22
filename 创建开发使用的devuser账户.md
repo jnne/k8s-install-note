@@ -1,5 +1,5 @@
 ``` bash
-cfssl gencert -ca=../ca.pem -ca-key=../ca-key.pem -config=../ca-config.json -profile=fengjr devuser-csr.json | cfssljson -bare devuser
+cfssl gencert -ca=../ca.pem -ca-key=../ca-key.pem -config=../ca-config.json -profile=example devuser-csr.json | cfssljson -bare devuser
 kubectl config set-cluster kubernetes \
 --certificate-authority=/etc/kubernetes/ssl/ca.pem \
 --embed-certs=true \

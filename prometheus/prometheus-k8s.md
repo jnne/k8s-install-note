@@ -331,7 +331,7 @@ kubectl create -f prometheus.config.yml
           runAsNonRoot: true
         serviceAccountName: prometheus
         containers:
-        - image: hub-dev.fengjr.com/prometheus/prometheus:v2.0.0
+        - image: hub-dev.example.com/prometheus/prometheus:v2.0.0
           name: prometheus
           command:
           - "/bin/prometheus"
@@ -417,7 +417,7 @@ spec:
       hostNetwork: true
       hostPID: true
       containers:
-      - image: hub-dev.fengjr.com/prometheus/node-exporter:v0.15.2
+      - image: hub-dev.example.com/prometheus/node-exporter:v0.15.2
         args:
         - "--path.procfs=/host/proc"
         - "--path.sysfs=/host/sys"
@@ -468,7 +468,7 @@ metadata:
   namespace: kube-system
 spec:
   rules:
-  - host: prometheus-dashboard.fengjr.com
+  - host: prometheus-dashboard.example.com
     http:
       paths:
       - path: /

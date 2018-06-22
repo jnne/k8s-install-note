@@ -6,7 +6,7 @@ metadata:
   namespace: jenkins-project
 spec:
   rules:
-  - host: k8s-jenkins.fengjr.com
+  - host: k8s-jenkins.example.com
     http:
       paths:
       - backend:

@@ -50,7 +50,7 @@ metadata:
   namespace: monitoring
 spec:
   rules:
-  - host: grafana-dashboard.fengjr.com
+  - host: grafana-dashboard.example.com
     http:
       paths:
       - path: /

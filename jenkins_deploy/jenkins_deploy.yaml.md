@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: jenkins
-        image: hub-dev.fengjr.com/jenkins/jenkins:2.60.3
+        image: hub-dev.example.com/jenkins/jenkins:2.60.3
         imagePullPolicy: IfNotPresent
         volumeMounts:
         - name: jenkins-home

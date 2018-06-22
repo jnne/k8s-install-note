@@ -123,7 +123,7 @@ if __name__ == '__main__':
 - dockerfile
 
 ``` bash
-FROM hub-dev.fengjr.com/prometheus/ubuntu:16.04 #这里就是使用的官方的ubuntu16.04的镜像
+FROM hub-dev.example.com/prometheus/ubuntu:16.04 #这里就是使用的官方的ubuntu16.04的镜像
 MAINTAINER sadlar sadlar@126.com
 
 #添加python

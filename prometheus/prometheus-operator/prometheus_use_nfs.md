@@ -36,7 +36,7 @@ spec:
     - name: alertmanager-main
       namespace: monitoring
       port: web
-  baseImage: hub-dev.fengjr.com/prometheus/prometheus_fengjr
+  baseImage: hub-dev.example.com/prometheus/prometheus_example
   nodeSelector:
     beta.kubernetes.io/os: linux
   replicas: 1

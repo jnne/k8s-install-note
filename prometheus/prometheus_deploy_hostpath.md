@@ -28,7 +28,7 @@ spec:
         runAsNonRoot: true
       serviceAccountName: prometheus
       containers:
-      - image: hub-dev.fengjr.com/prometheus/prometheus:v2.0.0
+      - image: hub-dev.example.com/prometheus/prometheus:v2.0.0
         name: prometheus
         command:
         - "/bin/prometheus"

@@ -33,7 +33,7 @@ metadata:
   name: main
   namespace: monitoring
 spec:
-  baseImage: hub-dev.fengjr.com/prometheus/alertmanager
+  baseImage: hub-dev.example.com/prometheus/alertmanager
   nodeSelector:
     beta.kubernetes.io/os: linux
   replicas: 1
