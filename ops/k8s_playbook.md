@@ -6,7 +6,7 @@
 
 #将当前运行在k8s-node1节点上的容器驱离
 
-`kubectl drain k8s-node1`     
+`kubectl drain k8s-node1`    #--ignore-daemonsets 忽略daemonset的部署。  
 
 #执行完维护后，将节点重新加入调度
 
