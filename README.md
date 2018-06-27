@@ -52,3 +52,6 @@
 	    * [k8sv1.10.0安装文档](./quickstart/README.md)
 	    * [prometheus使用nfs](./prometheus/prometheus-operator/prometheus_use_nfs.md)
 	    * [alertmanager使用nfs](./prometheus/prometheus-operator/alertmanager-use-nfs.md)
+	  * [部署mysqlmgr](./mysql_mgr_deploy/index.md)
+	    * [部署mysqlmgr主](./mysql_mgr_deploy/mysql-mgr-0.md)
+	    * [部署mysqlmgr从](./mysql_mgr_deploy/mysql-mgr-1.md)

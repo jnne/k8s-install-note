@@ -9,6 +9,11 @@ kubectl label node kube-master03 mysqlrole=mysql-mgr-1
 
 #mysql-mgr-cnf-1.yaml
 
+这里有一个地方需要注意：因为mysql mgr 会默认使用hostname 做为member_host 所以需要增加变量使mysql mgr采用自定义的域名做member_host mysql的参数为 report_host
+
+[report_host官方解释](https://dev.mysql.com/doc/refman/5.7/en/replication-options-slave.html#option_mysqld_report-host)
+
+
 ``` yaml
 apiVersion: v1
 data:
