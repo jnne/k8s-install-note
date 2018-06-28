@@ -6,5 +6,4 @@ yum install https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/stable/Pa
 yum install https://mirrors.aliyun.com/docker-ce/linux/centos/7/x86_64/stable/Packages/docker-ce-17.03.2.ce-1.el7.centos.x86_64.rpm  -y
 # yum install docker-ce
 # yum list docker-ce.x86_64  --showduplicates | sort -r
-
 ```
