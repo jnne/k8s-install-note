@@ -125,7 +125,7 @@ spec:
   hostname: mysql-mgr-0
   subdomain: mgrtest
   containers:
-  - image: hub-dev.fengjr.com/base/mysqlmgr:v0.1.8
+  - image: hub-dev.example.com/base/mysqlmgr:v0.1.8
     name: mysql-mgr-0
     imagePullPolicy: IfNotPresent
     volumeMounts:
