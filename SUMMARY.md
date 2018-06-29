@@ -34,6 +34,7 @@
     * [创建jenkins的ingress](./jenkins_deploy/jenkins-ingress.yaml.md)
   * [coredns部署](./coredns.md)
   * [ops](./ops/index.md)
+    * [etcd集群备份和恢复](./ops/etcd_cluster_backup_recovery.md)
     * [初始化节点脚本](./ops/init_nodes.md)
     * [创建devuser的开发使用的账户](./创建开发使用的devuser账户.md)
     * [rbac的说明](./rbac/rbac简介.md)
