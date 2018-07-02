@@ -46,7 +46,7 @@ SSL_DIR='/etc/kubernetes/ssl'
 [ -d "$MANIFESTS_DIR" ]  || run "mkdir -p $MANIFESTS_DIR"
 [ -d "$SSL_DIR" ] || run "mkdir -p $SSL_DIR "
 run " mkdir -p /etc/cni/net.d  /opt/cni/bin/ /var/lib/kubelet "
-if ! grep "hub-dev.fengjr.com" /etc/hosts ; then  echo "10.255.57.7 hub-dev.fengjr.com" >> /etc/hosts; fi
+if ! grep "hub-dev.example.com" /etc/hosts ; then  echo "10.255.57.7 hub-dev.example.com" >> /etc/hosts; fi
 log "Update os software..."
 run "yum update -y -q"
 if [ $? == 0 ];then echo "Update sucess...";else echo "Update failed,install will breakup...";exit 0 ;fi
