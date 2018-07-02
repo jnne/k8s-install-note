@@ -48,6 +48,9 @@ app = Flask(__name__)
 
 
 console = logging.StreamHandler()
+fmt = '%(asctime)s - %(filename)s:%(lineno)s - %(name)s - %(message)s'
+formatter = logging.Formatter(fmt)
+console.setFormatter(formatter)
 log = logging.getLogger("flask_webhook_dingtalk")
 log.addHandler(console)
 log.setLevel(logging.DEBUG)
@@ -65,8 +68,8 @@ def hander_session(profiledd):
 
     dingtalk_profile = dict(
         {
-            'node' : 'https://oapi.dingtalk.com/robot/send?access_token=xxx',
-            'test' : 'https://oapi.dingtalk.com/robot/send?access_token=xxx'
+            'node' : 'https://oapi.dingtalk.com/robot/send?access_token=access_token',
+            'test' : 'https://oapi.dingtalk.com/robot/send?access_token=access_token'
         }
     )
 
@@ -107,6 +110,7 @@ def hander_session(profiledd):
                 return status
             except Exception as e:
                 log.error(repr(e))
+                return  repr(e)
 
 def alert_data(data,title,profile_url):
     headers = {'Content-Type':'application/json'}
