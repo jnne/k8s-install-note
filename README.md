@@ -45,6 +45,7 @@
 	    * [创建jenkins的ingress](./jenkins_deploy/jenkins-ingress.yaml.md)
 	  * [coredns部署](./coredns.md)
 	  * [ops](./ops/index.md)
+	    * [使用kube-router代理calico发布serviceip以及内网dns配置中继](./ops/kube-router-use-firewall-use-proxy-and-provi-service-ip.md)
 	    * [etcd集群备份和恢复](./ops/etcd_cluster_backup_recovery.md)
 	    * [初始化节点脚本](./ops/init_nodes.md)
 	    * [创建devuser的开发使用的账户](./创建开发使用的devuser账户.md)
