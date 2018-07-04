@@ -8,7 +8,8 @@
 
 - 1. /etc/cni/net.d/ 这个目录 如果不懂，保持目录为空
 - 2. /var/lib/kube-router/kubeconfig 是一个文件，内容为之前创建的kube-proxy.kubeconfig
-
+- 3. controller-manager 需要添加一个参数：
+  --allocate-node-cidrs=true
 
 - 1. rbac配置：
 
@@ -113,6 +114,7 @@ spec:
           - "--run-service-proxy=true"
           - "--kubeconfig=/var/lib/kube-router/kubeconfig"
           - "--advertise-cluster-ip=true"
+          - "--nodes-full-mesh=false" #各个node之间不互相建立bgp
           - "--cluster-asn=65000" #这是自己的asn号
           - "--peer-router-ips=192.168.0.254" #目标交换机的地址
           - "--peer-router-asns=65000" #目标交换机的asn号
@@ -179,6 +181,11 @@ spec:
           path: /var/lib/kube-router/kubeconfig
 ```
 
+kube-router 查看bgp 邻居
+
+```
+gobgp  neighbor
+```
 
 **3.做内网和k8s内部coredns之间的转发**
 
