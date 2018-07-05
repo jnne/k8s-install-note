@@ -9,7 +9,7 @@
 - 1. /etc/cni/net.d/ 这个目录 如果不懂，保持目录为空
 - 2. /var/lib/kube-router/kubeconfig 是一个文件，内容为之前创建的kube-proxy.kubeconfig
 - 3. controller-manager 需要添加一个参数：
-  --allocate-node-cidrs=true
+--allocate-node-cidrs=true 
 
 - 1. rbac配置：
 
