@@ -21,7 +21,9 @@ It is recommended to have an odd number of members in a cluster. Having an odd c
 | 8 | 5 | 3 |
 | 9 | 5 | **4** |
 
-首先模拟了etcd集群down机的情况，当集群为3台时，down机一台,在使用命令查询和kubernetes dashboard 查询都不受影响，pod访问正常，down机2台，则访问不到。建议 etcd 集群的台数为5台。 
+
+首先模拟了etcd集群down机的情况，当集群为3台时，down机一台,在使用命令查询和kubernetes dashboard 查询都不受影响，pod访问正常，down机2台，则访问不到。建议 etcd 集群的台数为5台。
+
 
 **1.etcd Cluster 备份**
 
