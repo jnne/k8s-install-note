@@ -1,3 +1,5 @@
+[参考连接1](http://blog.51cto.com/net592/2059315)
+[https://github.com/cloudnativelabs/kube-router/tree/master/daemonset](https://github.com/cloudnativelabs/kube-router/tree/master/daemonset
 **1.本篇文章是在解决两个问题**
 - 1. 实现内网dns转发
 - 2. k8s内部的service ip 可以被内网访问
@@ -9,7 +11,7 @@
 - 1. /etc/cni/net.d/ 这个目录 如果不懂，保持目录为空
 - 2. /var/lib/kube-router/kubeconfig 是一个文件，内容为之前创建的kube-proxy.kubeconfig
 - 3. controller-manager 需要添加一个参数：
---allocate-node-cidrs=true 
+--allocate-node-cidrs=true
 
 - 1. rbac配置：
 
