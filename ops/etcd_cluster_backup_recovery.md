@@ -41,9 +41,9 @@ ETCDCTL_API=3 etcdctl \
 #恢复etcd01
 
 ``` bash
-ETCDCTL_API=3 etcdctl snapshot restore snapshot.db \
-  --name etcd01 \
-  --initial-cluster etcd01=https://10.255.72.189:2380,etcd02=https://10.255.72.190:2380,etcd03=https://10.255.72.191:2380 \
-  --initial-cluster-token etcd-cluster-1 \
-  --initial-advertise-peer-urls https://10.255.72.189:2380
+service etcd stop
+mv  /var/lib/etcd/ /var/lib/etcd_bak
+rm -fr /var/lib/etcd/
+ETCDCTL_API=3 etcdctl snapshot restore snapshot.db --name etcd01 --initial-cluster etcd01=https://10.255.72.189:2380,etcd02=https://10.255.72.190:2380,etcd03=https://10.255.72.191:2380  --initial-cluster-token etcd-cluster-1 --initial-advertise-peer-urls https://10.255.73.196:2380 --data-dir=/var/lib/etcd
+service etcd start
 ```
