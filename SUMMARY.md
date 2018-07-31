@@ -1,6 +1,7 @@
 # 目录
   * [k8s v.1.10.0 二进制安装](./1.k8s v.1.10.0 二进制安装.md)
   * [calico网络设置](./2.k8s 二进制安装集群-calico网络设置.md)
+  * [calico网络策略](./calico-network-policy/kubernetes-network-policy-deploy.md)
   * [kubedns配置](./3.K8S 二进制安装集群-kubedns配置.md)
   * [kube-dashboard](./4.K8S 二进制安装集群-kube-dashboard.md)
   * [nginx-ingress](./5.KUBERNETES V1.10.0 二进制安装 之nginx-ingress 边界路由安装配置.md)
