@@ -1,3 +1,6 @@
+强调一点：
+如果pod的ip需要固定并且需要使用svc，则 需要使用cni.projectcalico.org/ipAddrsNoIpam， 不加NoIpam，svc不通。
+
 1. 参考文档
   - https://www.kubernetes.org.cn/network-policy
   - https://segmentfault.com/a/1190000012692009
