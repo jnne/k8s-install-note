@@ -1,5 +1,6 @@
 强调一点：
 如果pod的ip需要固定并且需要使用svc，则 需要使用cni.projectcalico.org/ipAddrsNoIpam， 不加NoIpam，svc不通。
+同时 该策略生效范围是集群内部，pod的策略可以被集群外部访问，svc的策略开放只是对集群内部，拒绝是所有都拒绝。
 
 1. 参考文档
   - https://www.kubernetes.org.cn/network-policy
