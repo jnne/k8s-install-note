@@ -37,13 +37,13 @@ spec:
           requests:
             cpu: 200m
             memory: 2048Mi
-        image: hub-dev.fengjr.com/base/nginx-kafka.v1.0:latest
+        image: hub-dev.example.com/base/nginx-kafka.v1.0:latest
         imagePullPolicy: Always
         volumeMounts:
         - mountPath: /export/log/test/
           name: cache-volume
       - name: flume-sender
-        image: hub-dev.fengjr.com/base/flume-beta:v1.0
+        image: hub-dev.example.com/base/flume-beta:v1.0
         imagePullPolicy: Always
         volumeMounts:
         - mountPath: /export/log/test/
