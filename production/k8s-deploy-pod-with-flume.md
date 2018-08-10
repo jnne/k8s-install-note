@@ -43,6 +43,13 @@ spec:
         - mountPath: /export/log/test/
           name: cache-volume
       - name: flume-sender
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 4096Mi
+          requests:
+            cpu: 200m
+            memory: 2048Mi
         image: hub-dev.example.com/base/flume-beta:v1.0
         imagePullPolicy: Always
         volumeMounts:
