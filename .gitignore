@@ -4,6 +4,5 @@ _book
 .vagrant
 npm-debug.log
 **/**/.vagrant
-*.pdf
 examples/localhost
 .DS_Store
